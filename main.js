@@ -1,19 +1,21 @@
-
-
-let successAudio = document.createElement("audio")
-successAudio.src = "success.mp3"
-successAudio.id = 'success'
-let failAudio = document.createElement("audio")
-failAudio.src = 'fail.mp3'
-failAudio.id = 'fail'
-
+let successAudio = document.createElement("audio");
+successAudio.src = "success.mp3";
+successAudio.id = "success";
+let failAudio = document.createElement("audio");
+failAudio.src = "fail.mp3";
+failAudio.id = "fail";
+let controlButtons = document.querySelector(".control-buttons");
+let infoContainer = document.querySelector(".info-container");
 
 document.querySelector(".control-buttons span").onclick = function () {
   let yourName = prompt("What Is Your Name ?");
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Unknown";
+    successAudio.play();
   } else {
     document.querySelector(".name span").innerHTML = yourName;
+    4;
+    successAudio.play();
   }
   document.querySelector(".control-buttons").remove();
 };
@@ -47,6 +49,40 @@ blocks.forEach((block, index) => {
     }
   });
 });
+// Set Timer
+let time = 300;
+let counter = setInterval(() => {
+  let minutes = parseInt(time / 60);
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  document.querySelector(".minutes").innerHTML = minutes;
+  let seconds = parseInt(time % 60);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  document.querySelector(".seconds").innerHTML = seconds;
+
+  if (--time < 0) {
+    clearInterval(counter);
+  
+
+    controlButtons.remove();
+    infoContainer.remove();
+    blocksContainer.remove();
+    let newDiv = document.createElement("div");
+    newDiv.style.cssText =
+      "position: relative; background-color : black ; color: white; margin: 100px auto; height: 200px";
+    let finish = document.createElement("p");
+    finish.textContent = "The Game is Finished";
+    newDiv.appendChild(finish);
+    finish.style.cssText =
+      "position:absolute ; left: 50%; top : 50% ; transform : translate(-50% , -50%)";
+
+    document.body.appendChild(newDiv);
+  
+  }
+}, 1000);
 
 // Flip Block Function
 function flipBlock(selectedBlock) {
@@ -72,17 +108,15 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
     firstBlock.classList.add("has-match");
     secondBlock.classList.add("has-match");
 
-    successAudio.play()
+    successAudio.play();
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
-     
 
-    setTimeout(()=>{
+    setTimeout(() => {
       firstBlock.classList.remove("is-flipped");
       secondBlock.classList.remove("is-flipped");
-    } , duration)
-      failAudio.play()
-
+    }, duration);
+    failAudio.play();
   }
 }
 
