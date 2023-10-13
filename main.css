@@ -39,6 +39,12 @@ body {
 .info-container .name {
   flex-basis: 50%;
 }
+.info-container .timer {
+  color: red;
+  background-color: black;
+  padding: 20px;
+  
+}
 .info-container .tries {
   flex-basis: 50%;
   text-align: right;
@@ -49,7 +55,7 @@ body {
   flex-wrap: wrap;
   margin: 20px auto;
 }
-.memory-game-blocks.no-clicking{
+.memory-game-blocks.no-clicking {
   pointer-events: none;
 }
 .memory-game-blocks .game-block {
@@ -61,9 +67,8 @@ body {
   flex: 1 0 200px;
   margin: 0 10px 20px;
 }
-.memory-game-blocks .game-block.is-flipped ,
-.memory-game-blocks .game-block.has-match
-{
+.memory-game-blocks .game-block.is-flipped,
+.memory-game-blocks .game-block.has-match {
   transform: rotateY(180deg);
   pointer-events: none;
 }
