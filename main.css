@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Tahoma, Arial;
+}
+.control-buttons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(3, 169, 244, 0.9);
+}
+.control-buttons span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: #f44336;
+  padding: 15px 25px;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.info-container {
+  width: 100%;
+  margin: 20px auto 0;
+  background-color: #f6f6f6;
+  padding: 20px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #2196f3;
+}
+.info-container .name {
+  flex-basis: 50%;
+}
+.info-container .tries {
+  flex-basis: 50%;
+  text-align: right;
+}
+.memory-game-blocks {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+.memory-game-blocks.no-clicking{
+  pointer-events: none;
+}
+.memory-game-blocks .game-block {
+  height: 200px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  flex: 1 0 200px;
+  margin: 0 10px 20px;
+}
+.memory-game-blocks .game-block.is-flipped ,
+.memory-game-blocks .game-block.has-match
+{
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+.memory-game-blocks .game-block .front {
+  background-color: #333;
+  line-height: 200px;
+}
+.memory-game-blocks .game-block .front:before {
+  content: "!";
+  font-size: 140px;
+  color: #fff;
+}
+.memory-game-blocks .game-block .back {
+  background-color: #607d8b;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  font-weight: bold;
+}
+.memory-game-blocks .game-block .back img {
+  width: 140px;
+  height: 140px;
+  margin-top: 30px;
+  position: relative;
+  right: -5px;
+}
+
+.memory-game-blocks .game-block .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 5px solid #2196f3;
+}
+@media (max-width: 767px) {
+  .memory-game-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+  }
+  .special {
+    position: relative;
+    top: -10px;
+  }
+  .memory-game-blocks img {
+    width: 120px;
+  }
+}
