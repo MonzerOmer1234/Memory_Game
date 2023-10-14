@@ -4,6 +4,10 @@ successAudio.id = "success";
 let failAudio = document.createElement("audio");
 failAudio.src = "fail.mp3";
 failAudio.id = "fail";
+let gameAudio = document.createElement("audio");
+gameAudio.src = "Game.mp3";
+gameAudio.loop = true;
+gameAudio.id = "game";
 let controlButtons = document.querySelector(".control-buttons");
 let infoContainer = document.querySelector(".info-container");
 
@@ -11,11 +15,11 @@ document.querySelector(".control-buttons span").onclick = function () {
   let yourName = prompt("What Is Your Name ?");
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Unknown";
-    successAudio.play();
+    gameAudio.play();
   } else {
     document.querySelector(".name span").innerHTML = yourName;
-    4;
-    successAudio.play();
+
+    gameAudio.play();
   }
   document.querySelector(".control-buttons").remove();
 };
@@ -50,7 +54,7 @@ blocks.forEach((block, index) => {
   });
 });
 // Set Timer
-let time = 300;
+let time = 3000;
 let counter = setInterval(() => {
   let minutes = parseInt(time / 60);
   if (minutes < 10) {
@@ -65,7 +69,6 @@ let counter = setInterval(() => {
 
   if (--time < 0) {
     clearInterval(counter);
-  
 
     controlButtons.remove();
     infoContainer.remove();
@@ -80,7 +83,7 @@ let counter = setInterval(() => {
       "position:absolute ; left: 50%; top : 50% ; transform : translate(-50% , -50%)";
 
     document.body.appendChild(newDiv);
-  
+    gameAudio.pause()
   }
 }, 1000);
 
