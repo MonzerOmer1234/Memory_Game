@@ -19,7 +19,7 @@ document.querySelector(".control-buttons span").onclick = function () {
   }
   document.querySelector(".control-buttons").remove();
 };
-let duration = 1000;
+let duration = 4000;
 let blocksContainer = document.querySelector(".memory-game-blocks");
 
 let blocks = Array.from(blocksContainer.children);
@@ -90,6 +90,7 @@ function flipBlock(selectedBlock) {
 }
 
 // Stop Clicking Function
+
 function stopClicking() {
   //  Add Class No Clicking To The Main Container
   blocksContainer.classList.add("no-clicking");
